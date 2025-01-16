@@ -62,8 +62,7 @@ export type ComponentChild =
 	| undefined;
 export type ComponentChildren = ComponentChild[] | ComponentChild;
 
-export interface FunctionComponent<P = {}>
-	extends preact.FunctionComponent<P> {
+export interface FunctionComponent<P = {}> extends preact.FunctionComponent<P> {
 	// Internally, createContext uses `contextType` on a Function component to
 	// implement the Consumer component
 	contextType?: PreactContext;
@@ -164,6 +163,7 @@ export interface Component<P = {}, S = {}> extends preact.Component<P, S> {
 	state: S; // Override Component["state"] to not be readonly for internal use, specifically Hooks
 	base?: PreactElement;
 
+	_excess?: PreactElement[];
 	_dirty: boolean;
 	_force?: boolean;
 	_renderCallbacks: Array<() => void>; // Only class components
